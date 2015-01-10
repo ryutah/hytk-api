@@ -1,13 +1,12 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -17,15 +16,16 @@ import java.util.List;
 @Entity
 public class TestModel extends Model{
     @Id
-    private Long id;
+    public Long id;
 
     @Constraints.Required
-    private String name;
+    public String name;
 
 
-    @ManyToOne
-    @JoinColumn(name = "parentId")
-    private TestParent parentId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", referencedColumnName="id")
+    @JsonBackReference("TestParent")
+    public TestParent parentId;
 
     public static Finder<Long, TestModel> find = new Finder<Long, TestModel>(Long.class, TestModel.class);
 
@@ -39,30 +39,4 @@ public class TestModel extends Model{
     public static List<TestModel> getIds() {
         return find.select("id").findList();
     }
-
-    @JsonIgnore
-    public TestParent getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(TestParent parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

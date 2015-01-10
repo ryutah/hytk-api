@@ -15,7 +15,7 @@ create table blog_content (
 create table test_model (
   id                        bigint auto_increment not null,
   name                      varchar(255),
-  parentId                  bigint,
+  parent_id                 bigint,
   constraint pk_test_model primary key (id))
 ;
 
@@ -25,8 +25,8 @@ create table test_parent (
   constraint pk_test_parent primary key (id))
 ;
 
-alter table test_model add constraint fk_test_model_parentId_1 foreign key (parentId) references test_parent (id) on delete restrict on update restrict;
-create index ix_test_model_parentId_1 on test_model (parentId);
+alter table test_model add constraint fk_test_model_parentId_1 foreign key (parent_id) references test_parent (id) on delete restrict on update restrict;
+create index ix_test_model_parentId_1 on test_model (parent_id);
 
 
 
