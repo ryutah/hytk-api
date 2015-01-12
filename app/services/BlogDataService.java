@@ -6,6 +6,7 @@ import models.BlogData;
 import org.springframework.stereotype.Service;
 import play.libs.Json;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 
 @Service
-public class BlogDataController {
+public class BlogDataService {
 
     public void findBlogs(String json) {
         JsonNode node = Json.parse(json);
@@ -23,5 +24,9 @@ public class BlogDataController {
         String state = node.get("status").asText();
         String publishFrom = node.get("publishFrom").asText();
         String publishTo = node.get("publishTo").asText();
+        List<String> tags = new ArrayList<>();
+        for(JsonNode n : node.get("tag")) {
+            tags.add(n.asText());
+        }
     }
 }
