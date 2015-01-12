@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by ryuta on 15/01/11.
  */
-<<<<<<< .merge_file_7nVmwq
+
 public class TagData {
 =======
 public class TagData extends Model{
@@ -23,5 +23,4 @@ public class TagData extends Model{
     public static Finder<Long, TagData> find =
             new Finder<Long, TagData>(Long.class, TagData.class);
     
->>>>>>> .merge_file_OjCuir
 }
