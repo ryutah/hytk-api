@@ -1,7 +1,9 @@
 package controllers;
 
+import services.TestLogic;
 import models.TestModel;
 import models.TestParent;
+import org.springframework.beans.factory.annotation.Autowired;
 import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -10,9 +12,16 @@ import views.html.index;
 
 import java.util.List;
 
+@org.springframework.stereotype.Controller
 public class Application extends Controller {
 
-    public static Result index() {
+    @Autowired
+    private TestLogic testLogic;
+
+    public Result index() {
+
+        testLogic.helloLogic();
+        System.out.println("INDEX!!!");
         return ok(index.render("Your new application is ready."));
     }
 
