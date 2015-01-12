@@ -16,5 +16,8 @@ public class TagData extends Model{
     public Date create;
 
     public Date update;
+
+    public static Finder<Long, TagData> find =
+            new Finder<Long, TagData>(Long.class, TagData.class);
     
 }

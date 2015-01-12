@@ -16,4 +16,7 @@ public class CategoryData extends Model{
     public Date create;
 
     public Date update;
+
+    public static Finder<Long, CategoryData> find =
+            new Finder<Long, CategoryData>(Long.class, CategoryData.class);
 }
