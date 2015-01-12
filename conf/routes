@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+# @をつけることで、コントローラをインスタンス化できる
 GET     /                           @controllers.Application.index()
 GET     /model                      controllers.Application.getModel()
 GET     /names/*name                      controllers.Application.getName(name)
