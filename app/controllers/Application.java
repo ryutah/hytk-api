@@ -6,6 +6,7 @@ import play.Logger;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.index;
 
 import java.util.List;
 
@@ -17,18 +18,19 @@ public class Application extends Controller {
 
     public static Result getModel() {
         TestModel testModel = new TestModel();
-        testModel.setName("ryuta");
+        testModel.name = "ryuta";
 
         TestParent parent = new TestParent();
         parent.parentName = "test";
-        parent.save();
-
         parent.addChild(testModel);
+        parent.save();
 //
 //        testModel.save();
 
         Logger.info("----------New TestModel ID-----------");
-        Logger.info(testModel.getId().toString());
+        Logger.info(testModel.id.toString());
+        Logger.info(Json.toJson(parent).toString());
+        Logger.info(Json.toJson(testModel).toString());
         Logger.info("-------------------------------------");
 
         List<TestModel> models = TestModel.find.all();

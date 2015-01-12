@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Ebean;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import play.db.ebean.Model;
 
 import javax.persistence.CascadeType;
@@ -22,6 +23,7 @@ public class TestParent extends Model {
     public String parentName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parentId")
+    @JsonManagedReference("TestParent")
     public List<TestModel> models;
 
     public static Long create(String name) {
