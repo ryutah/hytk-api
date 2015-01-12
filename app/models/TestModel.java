@@ -1,5 +1,6 @@
 package models;
 
+import com.avaje.ebean.annotation.CreatedTimestamp;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -7,6 +8,7 @@ import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +23,14 @@ public class TestModel extends Model{
     @Constraints.Required
     public String name;
 
+    @CreatedTimestamp
+    public Date createDate;
+
+    @Version
+    public Date updateDate;
+
+    public String publish;
+
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id", referencedColumnName="id")
@@ -31,7 +41,9 @@ public class TestModel extends Model{
 
     public static List<TestModel> getList(String name) {
         String value = "%" + name + "%";
-        List<TestModel> models = TestModel.find.where().like("name", value).findList();
+        List<TestModel> models = TestModel.find.where()
+                .like("name", value)
+                .findList();
 
         return models;
     }

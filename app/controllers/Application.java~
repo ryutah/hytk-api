@@ -10,8 +10,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -21,6 +19,7 @@ public class Application extends Controller {
     private TestLogic testLogic;
 
     public Result index() {
+
         testLogic.helloLogic();
         System.out.println("INDEX!!!");
         return ok(index.render("Your new application is ready."));
@@ -29,9 +28,6 @@ public class Application extends Controller {
     public static Result getModel() {
         TestModel testModel = new TestModel();
         testModel.name = "ryuta";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        testModel.publish = format.format(date);
 
         TestParent parent = new TestParent();
         parent.parentName = "test";

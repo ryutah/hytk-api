@@ -15,7 +15,10 @@ create table blog_content (
 create table test_model (
   id                        bigint auto_increment not null,
   name                      varchar(255),
+  publish                   varchar(255),
   parent_id                 bigint,
+  create_date               datetime not null,
+  update_date               datetime not null,
   constraint pk_test_model primary key (id))
 ;
 
