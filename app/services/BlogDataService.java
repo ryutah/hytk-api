@@ -28,5 +28,6 @@ public class BlogDataService {
         for(JsonNode n : node.get("tag")) {
             tags.add(n.asText());
         }
+        
     }
 }

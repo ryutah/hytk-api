@@ -1,0 +1,12 @@
+BlogData(blog1):
+ id: 1
+ title: Blog1
+ content: TestContent1
+ status: 1
+ publish: "2014-12-12"
+
+BlogData(blog2)
+ id: 2
+ title: Blog2
+ content: testContent2
+ status: 2
