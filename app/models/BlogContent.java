@@ -16,7 +16,7 @@ import java.util.List;
  * Created by ryuta on 14/12/30.
  */
 
-@Entity
+//@Entity
 public class BlogContent extends Model{
     @Id
     public Long id;

@@ -16,20 +16,20 @@ public class CategoryBlogData extends Model {
     @Id
     public Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @JsonBackReference
-    public CategoryData categoryId;
+    public CategoryData categoryData;
 
     @ManyToOne
     @JoinColumn(name = "blog_id", referencedColumnName = "id")
     @JsonBackReference
-    public BlogData blogId;
+    public BlogData blogData;
 
     @CreatedTimestamp
-    public Date create;
+    public Date createDate;
 
     @Version
-    public Date update;
+    public Date updateDate;
 
 }

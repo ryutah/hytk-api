@@ -20,20 +20,21 @@ public class TagData extends Model{
     public Long id;
 
     @NotNull
+    @Column(length = 25)
     @Constraints.Required
     @Constraints.MaxLength(25)
     public String tag;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "tag_id")
     @JsonManagedReference
     public List<BlogTagData> blogTagDatas;
 
     @CreatedTimestamp
-    public Date create;
+    public Date createDate;
 
     @Version
-    public Date update;
+    public Date updateDate;
 
     public static Finder<Long, TagData> find =
             new Finder<Long, TagData>(Long.class, TagData.class);

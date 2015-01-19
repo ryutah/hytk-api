@@ -23,38 +23,35 @@ public class BlogData extends Model {
     public Long id;
 
     @Constraints.MaxLength(80)
-    @Column(name = "blog_title")
+    @Column(name = "blog_title", length = 80)
     public String title;
 
     @Column(name = "blog_content", columnDefinition = "LONGTEXT")
     public String content;
 
     @NotNull
-    @Column(columnDefinition = "integer default " + Unpublsh)
-    @Constraints.MaxLength(1)
+    @Column(columnDefinition = "integer default " + Unpublsh, length = 4)
+    @Constraints.MaxLength(4)
     public Integer status = Unpublsh;
 
-    @OneToMany
-    @JoinColumn(name = "blog_id")
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
-    public List<BlogTagData> blogTagDataList;
+    public List<BlogTagData> blogTagDatas;
 
-    @OneToMany
-    @JoinColumn(name =  "blog_id")
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     public List<CategoryBlogData> categoryBlogDatas;
 
 
-    @OneToMany
-    @JoinColumn(name = "blog_id")
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
     public List<CommentData> commentDatas;
 
-    public Date publish;
+    public Date publishDate;
 
     @CreatedTimestamp
-    public Date create;
+    public Date createDate;
 
     @Version
-    public Date update;
+    public Date updateDate;
 }

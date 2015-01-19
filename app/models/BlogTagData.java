@@ -17,20 +17,20 @@ public class BlogTagData extends Model{
     @Id
     public Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "blog_id", referencedColumnName = "id")
     @JsonBackReference
-    public BlogData blogId;
+    public BlogData blogData;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "tag_id", referencedColumnName = "id")
     @JsonBackReference
-    public TagData tagId;
+    public TagData tagData;
 
     @CreatedTimestamp
-    public Date create;
+    public Date createDate;
 
     @Version
-    public Date update;
+    public Date updateDate;
 
 }

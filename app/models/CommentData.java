@@ -18,24 +18,28 @@ public class CommentData extends Model {
     @Id
     public Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "blog_id", referencedColumnName = "id")
     @JsonBackReference
-    public BlogData blogId;
+    public BlogData blogData;
 
     @Constraints.MaxLength(50)
-    @Column(name = "comment_name")
+    @Column(name = "comment_name", length = 50)
     public String name;
 
-    @Column(name = "comment_title", columnDefinition = "TEXT")
+    @Constraints.MaxLength(50)
+    @Column(name = "comment_title", length = 50)
+    public String title;
+
+    @Column(name = "comment_content", columnDefinition = "TEXT")
     @Constraints.Required
     @NotNull
     public String content;
 
     @CreatedTimestamp
-    public Date create;
+    public Date createDate;
 
     @Version
-    public Date update;
+    public Date updateDate;
 
 }
