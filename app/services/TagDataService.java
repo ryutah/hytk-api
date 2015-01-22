@@ -23,7 +23,7 @@ public interface TagDataService {
      * @param tag タグ名
      * @return タグリスト
      */
-    public List<TagData> findTagList(String tag);
+    public List<TagData> getTagList(String tag);
 
     /**
      * タグを検索する
@@ -31,7 +31,7 @@ public interface TagDataService {
      * @param id タグID
      * @return タグ
      */
-    public TagData findTag(Long id);
+    public TagData getTag(Long id);
 
     /**
      * タグを更新する
@@ -48,5 +48,5 @@ public interface TagDataService {
      * @param id タグID
      * @return 削除に成功したか
      */
-    public boolean delTag(Long id);
+    public boolean deleteTag(Long id);
 }

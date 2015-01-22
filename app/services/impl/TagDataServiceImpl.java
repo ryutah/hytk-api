@@ -25,7 +25,7 @@ public class TagDataServiceImpl implements TagDataService{
     }
 
     @Override
-    public List<TagData> findTagList(String tag) {
+    public List<TagData> getTagList(String tag) {
         List<TagData> tagDatas =
                 Ebean.find(TagData.class)
                         .where()
@@ -36,7 +36,7 @@ public class TagDataServiceImpl implements TagDataService{
     }
 
     @Override
-    public TagData findTag(Long id) {
+    public TagData getTag(Long id) {
         TagData tagData = TagData.find.byId(id);
 
         return tagData;
@@ -56,7 +56,7 @@ public class TagDataServiceImpl implements TagDataService{
     }
 
     @Override
-    public boolean delTag(Long id) {
+    public boolean deleteTag(Long id) {
         TagData tagData = TagData.find.byId(id);
 
         if(tagData == null) {
