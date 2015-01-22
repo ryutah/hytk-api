@@ -1,6 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
-import services.TagDataService;
+import services.impl.TagDataServiceImpl;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.fakeApplication;
@@ -10,8 +10,8 @@ import static play.test.Helpers.running;
 /**
  * Created by ryuta on 15/01/18.
  */
-public class TagDataServiceTest {
-    TagDataService tagDataService = new TagDataService();
+public class TagDataServiceImplTest {
+    TagDataServiceImpl tagDataService = new TagDataServiceImpl();
 
     @Before
     public void setUp() {

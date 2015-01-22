@@ -1,6 +1,6 @@
 package controllers;
 
-import services.TestLogic;
+import services.impl.TestLogicImpl;
 import models.TestModel;
 import models.TestParent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import java.util.List;
 public class Application extends Controller {
 
     @Autowired
-    private TestLogic testLogic;
+    private TestLogicImpl testLogicImpl;
 
     public Result index() {
-        testLogic.helloLogic();
+        testLogicImpl.helloLogic();
         System.out.println("INDEX!!!");
         return ok(index.render("Your new application is ready."));
     }

@@ -1,50 +1,54 @@
 package services;
 
-import com.avaje.ebean.Ebean;
 import models.CategoryData;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by ryuta on 15/01/12.
+ * カテゴリデータを扱う
+ *
+ * Created by ryuta on 15/01/22.
  */
+public interface CategoryDataService {
 
-@Service
-public class CategoryDataService {
+    /**
+     * カテゴリデータを取得する
+     *
+     * @param category カテゴリ名
+     * @return 検索結果のリスト
+     */
+    public List<CategoryData> getCategoryList(String category);
 
-    public List<CategoryData> getCategorys(String category) {
-        List<CategoryData> categoryDatas =
-                Ebean.find(CategoryData.class)
-                        .where()
-                        .like("category", category + "%")
-                        .findList();
+    /**
+     * カテゴリデータを取得する(1件)
+     *
+     * @param id カテゴリID
+     * @return 検索結果
+     */
+    public CategoryData getCategory(Long id);
 
-        return categoryDatas;
-    }
+    /**
+     * カテゴリデータを新規作成する
+     *
+     * @param catrgory カテゴリ名
+     * @return 作成に成功したk
+     */
+    public Long savaCategory(String catrgory);
 
-    public CategoryData getCategory(Long id) {
-        CategoryData categoryData = CategoryData.find.byId(id);
+    /**
+     * カテゴリデータを更新する
+     *
+     * @param id カテゴリID
+     * @param category 新しいカテゴリ名
+     * @return 更新に成功したか
+     */
+    public boolean updateCategory(Long id, String category);
 
-        return categoryData;
-    }
-
-    public Long savaCategory(String catrgory){
-        CategoryData categoryData = new CategoryData();
-        categoryData.category = catrgory;
-        categoryData.save();
-
-        return categoryData.id;
-    }
-
-    public boolean updateCategory(Long id, String category) {
-        CategoryData categoryData = CategoryData.find.byId(id);
-        if(categoryData == null) {
-            return false;
-        } else {
-            categoryData.category = category;
-            categoryData.save();
-            return true;
-        }
-    }
+    /**
+     * カテゴリデータを削除する
+     *
+     * @param id カテゴリID
+     * @return 削除に成功したか
+     */
+    public boolean deleteCategory(Long id);
 }

@@ -1,63 +1,52 @@
 package services;
 
-import com.avaje.ebean.Ebean;
 import models.TagData;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by ryuta on 15/01/12.
+ * Created by ryuta on 15/01/22.
  */
+public interface TagDataService {
 
-@Service
-public class TagDataService {
+    /**
+     * タグデータを新規作成する
+     *
+     * @param tag タグ名
+     * @return 作成に成功したか
+     */
+    public Long saveTag(String tag);
 
-    public Long saveTag(String tag) {
-        TagData tagData = new TagData();
+    /**
+     * タグを検索する
+     *
+     * @param tag タグ名
+     * @return タグリスト
+     */
+    public List<TagData> findTagList(String tag);
 
-        tagData.tag = tag;
-        tagData.save();
+    /**
+     * タグを検索する
+     *
+     * @param id タグID
+     * @return タグ
+     */
+    public TagData findTag(Long id);
 
-        return tagData.id;
-    }
+    /**
+     * タグを更新する
+     *
+     * @param id タグID
+     * @param tag 新タグ名
+     * @return 更新に成功したか
+     */
+    public boolean updateTag(Long id, String tag);
 
-    public List<TagData> findTags(String tag) {
-        List<TagData> tagDatas =
-                Ebean.find(TagData.class)
-                        .where()
-                        .like("tag", tag + "%")
-                        .findList();
-
-        return tagDatas;
-    }
-
-    public TagData findTag(Long id) {
-        TagData tagData = TagData.find.byId(id);
-
-        return tagData;
-    }
-
-    public boolean updateTag(Long id, String tag) {
-        TagData tagData = TagData.find.byId(id);
-
-        if(tagData == null) {
-            return false;
-        } else {
-            tagData.tag = tag;
-            tagData.save();
-            return true;
-        }
-    }
-
-    public boolean delTag(Long id) {
-        TagData tagData = TagData.find.byId(id);
-
-        if(tagData == null) {
-            return false;
-        } else {
-            tagData.delete();
-            return true;
-        }
-    }
+    /**
+     * タグデータを削除する
+     *
+     * @param id タグID
+     * @return 削除に成功したか
+     */
+    public boolean delTag(Long id);
 }

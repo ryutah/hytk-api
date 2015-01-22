@@ -1,4 +1,4 @@
-package services;
+package services.impl;
 
 import org.springframework.stereotype.Service;
 import play.Logger;
@@ -8,7 +8,7 @@ import play.Logger;
  */
 
 @Service
-public class TestLogic{
+public class TestLogicImpl {
 
     public void helloLogic() {
         Logger.info("*****************************************");
