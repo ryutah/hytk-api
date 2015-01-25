@@ -4,8 +4,9 @@
 
 # Home page
 # @をつけることで、コントローラをインスタンス化できる
-GET     /                           @controllers.Application.index()
-GET     /model                      controllers.Application.getModel()
+GET     /                                @controllers.Application.index()
+POST    /model                           @controllers.Application.postModel()
+GET     /model                            controllers.Application.getModel()
 GET     /names/*name                      controllers.Application.getName(name)
 
 # Map static resources from the /public folder to the /assets URL path

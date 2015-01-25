@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import services.impl.TestLogicImpl;
 import models.TestModel;
 import models.TestParent;
@@ -24,6 +25,22 @@ public class Application extends Controller {
         testLogicImpl.helloLogic();
         System.out.println("INDEX!!!");
         return ok(index.render("Your new application is ready."));
+    }
+
+    public Result postModel() {
+        Logger.info("IN POST ++++++++++++++++++++++++++++++++++");
+
+        JsonNode json = request().body().asJson();
+        String name = json.get("name").asText();
+
+        TestModel testModel = new TestModel();
+        testModel.name = name;
+        TestParent parent = new TestParent();
+        parent.parentName = "parent of " + name;
+        parent.addChild(testModel);
+        parent.save();
+
+        return created();
     }
 
     public static Result getModel() {
