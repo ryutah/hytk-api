@@ -1,13 +1,10 @@
 package services.impl;
 
-import com.avaje.ebean.Ebean;
 import com.fasterxml.jackson.databind.JsonNode;
 import models.BlogData;
 import org.springframework.stereotype.Service;
-import play.libs.Json;
+import services.BlogDataService;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,19 +12,31 @@ import java.util.List;
  */
 
 @Service
-public class BlogDataServiceImpl {
+public class BlogDataServiceImpl implements BlogDataService {
 
-    public void findBlogs(String json) {
-        JsonNode node = Json.parse(json);
+    @Override
+    public List<BlogData> getBlogList() {
 
-        String title = node.get("title").asText();
-        String state = node.get("status").asText();
-        String publishFrom = node.get("publishFrom").asText();
-        String publishTo = node.get("publishTo").asText();
-        List<String> tags = new ArrayList<>();
-        for(JsonNode n : node.get("tag")) {
-            tags.add(n.asText());
-        }
-        
+        return null;
+    }
+
+    @Override
+    public BlogData getBlog(Long id) {
+        return null;
+    }
+
+    @Override
+    public Long saveBlog(JsonNode jsonNode) {
+        return null;
+    }
+
+    @Override
+    public boolean updateBlog(Long id, JsonNode jsonNode) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteBlog(Long id) {
+        return false;
     }
 }
